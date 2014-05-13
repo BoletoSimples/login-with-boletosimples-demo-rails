@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do  
-  provider :boletosimples, ENV['APP_ID'], ENV['APP_TOKEN'], environment: 'sandbox', scope: "profile email", user_agent: 'Boleto Simples (suporte@boletosimples.com.br)'
+  provider :boletosimples, ENV['APP_ID'], ENV['APP_TOKEN'], environment: 'sandbox', scope: "profile email", user_agent: 'Your App (yourapp@example.com)'
 end
 
 # OmniAuth.config.test_mode = true
