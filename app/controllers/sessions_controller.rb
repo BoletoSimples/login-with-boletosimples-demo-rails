@@ -1,9 +1,8 @@
 class SessionsController < ApplicationController
   def create
-    puts auth_hash.inspect
     user = User.where(uid: auth_hash.uid).first_or_create!(full_name: auth_hash.info.full_name, email: auth_hash.info.email)
     session[:user_id] = user.id
-    redirect_to :root
+    redirect_to '/demo/logged_in'
   end
 
   def show
