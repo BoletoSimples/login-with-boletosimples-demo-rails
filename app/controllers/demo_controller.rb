@@ -4,4 +4,8 @@ class DemoController < ApplicationController
 
   def api
   end
+  
+  def access_api
+    
+  end
 end
