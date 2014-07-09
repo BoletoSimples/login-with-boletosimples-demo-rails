@@ -42,5 +42,4 @@ gem 'omniauth-boletosimples', github: 'BoletoSimples/omniauth-boletosimples'
 
 gem 'pry-rails', group: :development
 
-
-
+gem 'boletosimples', path: "vendor/boletosimples-ruby-master"
