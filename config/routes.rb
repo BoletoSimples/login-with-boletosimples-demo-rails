@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'demo/api'
   post 'demo/access_api'
   get 'demo/new_billet'
+  get 'demo/logged_in'
 
   get "/auth/boletosimples/callback", to: "sessions#create"
 

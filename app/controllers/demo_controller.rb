@@ -7,6 +7,9 @@ class DemoController < ApplicationController
   def api
   end
 
+  def logged_in
+  end
+
   def access_api
 
     client = oauth_client(ENV['APP_ACCESS_TOKEN'])
