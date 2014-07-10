@@ -1,3 +1,7 @@
 <h1>Seja bem-vindo(a)!</h1>
 <p><b>Nome:</b> <%= current_user.full_name %></p>
 <p><b>Email:</b> <%= current_user.email %></p>
+
+<%= current_user.inspect %>
+
+<p><a href="/demo/new_billet?application_access_token=<%= current_user.access_token %>">Criar boleto</a></p>
