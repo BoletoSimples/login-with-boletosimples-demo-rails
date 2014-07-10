@@ -8,6 +8,8 @@ class DemoController < ApplicationController
   end
 
   def access_api
+    client = BoletoSimples::Client.new('dirceuu@gmail.com', '', {user_agent: 'Meu e-Commerce (meuecommerce@example.com)'})
+
     @user = client.partner_create_user(
       {
         user: {
@@ -17,12 +19,20 @@ class DemoController < ApplicationController
       }
     )
   end
-  
+
   def new_billet
-    
-    # params[:application_access_token]
-    
-    @billet = client.create_bank_billet({bank_billet:
+
+    credentials = {
+      :token => params[:application_access_token]
+    }
+    client_options = {
+      user_agent: 'Meu e-Commerce (meuecommerce@example.com)',
+      base_uri: 'http://localhost:5000'
+    }
+
+    oauth_client = BoletoSimples::OAuthClient.new('9d2d6a60debbb49cafa946aa097be73c273c2007edcc10150c5f498bb3e5329e', 'c2eba7b34956d51b49161e22453c3322b098040767d2c7c2d6924682ca8bb623', credentials, client_options)
+
+    @billet = oauth_client.create_bank_billet({bank_billet:
       {
         amount: 41.01,
         customer_address: 'Rua quinhentos',
@@ -42,12 +52,7 @@ class DemoController < ApplicationController
         notification_url: 'http://example.com.br/notify',
       }
     })
-    
+
   end
-  
-  private
-  
-  def client
-    BoletoSimples::Client.new('dirceuu@gmail.com', '', {user_agent: 'Meu e-Commerce (meuecommerce@example.com)'})
-  end
+
 end

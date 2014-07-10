@@ -41,3 +41,5 @@ gem 'omniauth-boletosimples', github: 'BoletoSimples/omniauth-boletosimples'
 # gem 'debugger', group: [:development, :test]
 
 gem 'pry-rails', group: :development
+
+gem 'boletosimples'
