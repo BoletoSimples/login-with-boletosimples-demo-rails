@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = User.where(uid: auth_hash.uid).first_or_create!(full_name: auth_hash.info.full_name, email: auth_hash.info.email)
+    user = User.find_or_create_with_omniauth(auth_hash)
     session[:user_id] = user.id
     redirect_to '/demo/logged_in'
   end
