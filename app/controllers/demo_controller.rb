@@ -1,3 +1,5 @@
+# APP_ID=18cd60aef456d06c99941b262cfc33e22f10e84d3e335a95d8535a12dc65bd03 APP_TOKEN=9bcc4c7d81395e0b6ed1b16da85ed64121d47b00e90fe6058e058d4010f64104 APP_ACCESS_TOKEN=1c1e46f9df5a3c69db0807c76b443ac3aad43df1b8670a7661e2e43994fe0555 rails s
+
 class DemoController < ApplicationController
   before_filter :authenticate!, only: [:logged_in]
 
@@ -8,8 +10,10 @@ class DemoController < ApplicationController
   end
 
   def access_api
-    client = BoletoSimples::Client.new('dirceuu@gmail.com', '', {user_agent: 'Meu e-Commerce (meuecommerce@example.com)'})
 
+    client = oauth_client(ENV['APP_ACCESS_TOKEN'])
+
+    # cria user com oauth
     @user = client.partner_create_user(
       {
         user: {
@@ -18,21 +22,16 @@ class DemoController < ApplicationController
         }
       }
     )
+
   end
 
   def new_billet
 
-    credentials = {
-      :token => params[:application_access_token]
-    }
-    client_options = {
-      user_agent: 'Meu e-Commerce (meuecommerce@example.com)',
-      base_uri: 'http://localhost:5000'
-    }
+    client = oauth_client(params[:application_access_token])
 
-    oauth_client = BoletoSimples::OAuthClient.new('9d2d6a60debbb49cafa946aa097be73c273c2007edcc10150c5f498bb3e5329e', 'c2eba7b34956d51b49161e22453c3322b098040767d2c7c2d6924682ca8bb623', credentials, client_options)
-
-    @billet = oauth_client.create_bank_billet({bank_billet:
+    @billet = client.create_bank_billet({
+      access_token: params[:application_access_token],
+      bank_billet:
       {
         amount: 41.01,
         customer_address: 'Rua quinhentos',
@@ -53,6 +52,21 @@ class DemoController < ApplicationController
       }
     })
 
+  end
+
+  private
+
+  def oauth_client(access_token=Nil)
+    credentials = {
+      :token => access_token
+    } if access_token
+
+    client_options = {
+      user_agent: 'Meu e-Commerce (meuecommerce@example.com)',
+      base_uri: 'http://localhost:5000/api/v1'
+    }
+
+    BoletoSimples::OAuthClient.new(ENV['APP_ID'], ENV['APP_TOKEN'], credentials, client_options)
   end
 
 end

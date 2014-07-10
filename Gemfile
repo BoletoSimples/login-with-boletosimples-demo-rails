@@ -42,4 +42,7 @@ gem 'omniauth-boletosimples', github: 'BoletoSimples/omniauth-boletosimples'
 
 gem 'pry-rails', group: :development
 
-gem 'boletosimples'
+gem 'boletosimples', github: 'BoletoSimples/boletosimples-ruby'
+
+gem 'rest-client'
+gem 'json'
