@@ -7,6 +7,18 @@ class DemoController < ApplicationController
   def api
   end
 
+  # require 'rest-client'
+  # require 'json'
+  #
+  # client_id = '9d2d6a60debbb49cafa946aa097be73c273c2007edcc10150c5f498bb3e5329e'
+  # client_secret = 'c2eba7b34956d51b49161e22453c3322b098040767d2c7c2d6924682ca8bb623'
+  #
+  # response = RestClient.post 'http://localhost:5000/oauth/token', {
+  #   grant_type: 'client_credentials',
+  #   client_id: client_id,
+  #   client_secret: client_secret
+  # }
+
   def access_api
     client = BoletoSimples::Client.new('dirceuu@gmail.com', '', {user_agent: 'Meu e-Commerce (meuecommerce@example.com)'})
 
@@ -27,12 +39,13 @@ class DemoController < ApplicationController
     }
     client_options = {
       user_agent: 'Meu e-Commerce (meuecommerce@example.com)',
-      base_uri: 'http://localhost:5000'
+      base_uri: 'http://localhost:5000/api/v1'
     }
 
     oauth_client = BoletoSimples::OAuthClient.new('9d2d6a60debbb49cafa946aa097be73c273c2007edcc10150c5f498bb3e5329e', 'c2eba7b34956d51b49161e22453c3322b098040767d2c7c2d6924682ca8bb623', credentials, client_options)
 
-    @billet = oauth_client.create_bank_billet({bank_billet:
+    @billet = oauth_client.create_bank_billet({
+      bank_billet:
       {
         amount: 41.01,
         customer_address: 'Rua quinhentos',
