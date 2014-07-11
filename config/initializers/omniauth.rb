@@ -1,5 +1,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :boletosimples, ENV['APP_ID'], ENV['APP_TOKEN'], environment: 'sandbox', scope: "profile email write", user_agent: 'Your App (yourapp@example.com)'
+
+  on_failure { |env| SessionsController.action(:failure).call(env) }
 end
 
 # OmniAuth.config.test_mode = true

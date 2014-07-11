@@ -5,6 +5,10 @@ class SessionsController < ApplicationController
     redirect_to '/demo/logged_in'
   end
 
+  def failure
+    @omniauth_error = env['omniauth.error']
+  end
+
   def show
     @user = User.find_by_id(session[:user_id])
   end

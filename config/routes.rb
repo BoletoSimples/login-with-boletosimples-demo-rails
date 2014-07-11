@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   get "/auth/boletosimples/callback", to: "sessions#create"
 
-  resource :session
+  resource :session do
+    collection do
+      get :failure
+    end
+  end
 
   root 'demo#index'
 end
