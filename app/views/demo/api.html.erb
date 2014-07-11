@@ -1,7 +1,9 @@
 <h1>API</h1>
 
 <form action="/demo/access_api" method="post">
-	<p>E-mail: <%= text_field_tag "email" %></p>
-	<p><%= submit_tag %></p>
-	<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <p>E-mail: <%= text_field_tag "email" %></p>
+
+  <p><%= submit_tag %></p>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
 </form>
+<%= link_to 'Voltar', root_path %>
