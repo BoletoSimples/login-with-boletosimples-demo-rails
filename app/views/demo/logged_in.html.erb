@@ -5,3 +5,4 @@
 <%= current_user.inspect %>
 
 <p><a href="/demo/new_billet?application_access_token=<%= current_user.access_token %>">Criar boleto</a></p>
+<p><%= link_to 'Voltar', demo_api_path %></p>

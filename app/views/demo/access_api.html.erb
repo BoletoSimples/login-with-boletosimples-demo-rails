@@ -4,8 +4,8 @@
   <p><%= @user.to_json %></p>
 <% else %>
   <p><%= @user.to_json %></p>
-  <p><%= link_to "Acessar Boleto Simples", "http://localhost:5000/#{@user['login_url'].split('/')[3]}", target: "_blank" %></p>
+  <p><%= link_to "Acessar Boleto Simples", "#{Rails.application.secrets.url_base}/#{@user['login_url'].split('/')[3]}", target: "_blank" %></p>
   <p><a href="/demo/new_billet?application_access_token=<%= @user['application_access_token'] %>">Criar boleto</a></p>
 <% end %>
 
-<%= link_to 'Voltar', demo_api_path %>
+<p><%= link_to 'Voltar', demo_api_path %></p>

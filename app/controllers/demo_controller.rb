@@ -60,7 +60,8 @@ class DemoController < ApplicationController
     } if access_token
 
     client_options = {
-      user_agent: 'Meu e-Commerce (meuecommerce@example.com)'
+      user_agent: 'Meu e-Commerce (meuecommerce@example.com)',
+      base_uri: "#{Rails.application.secrets.url_base}/api/v1"
     }
 
     BoletoSimples::OAuthClient.new(Rails.application.secrets.app_id,
