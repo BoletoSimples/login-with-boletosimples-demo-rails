@@ -1,12 +1,10 @@
-require 'rest-client'
-require 'json'
+require 'boletosimples'
 
-response = RestClient.post 'https://sandbox.boletosimples.com.br/api/v1/oauth2/token', {
-  grant_type: 'client_credentials',
-  client_id: 'app_id',
-  client_secret:  'app_secret'
-}
+BoletoSimples.configure do |c|
+  c.environment = :sandbox
+  c.application_id = 'app_id'
+  c.application_secret = 'app_secret'
+end
 
-app_access_token = JSON.parse(response)["access_token"]
+puts BoletoSimples.configuration.client_credentials
 
-puts "app_access_token: #{app_access_token}"

@@ -8,18 +8,20 @@ To start the server you need these environment variables set in config/secrets.y
 * **app_secret** - Your application secret
 * **app_access_token** - Your application access token (that allows you to create new users) please read further on how to obtain it
 
-Ask your credential in Boleto Simples http://suporte.boletosimples.com.br
+Register you application in Boleto Simples at https://sandbox.boletosimples.com.br/conta/api/aplicacoes
 
 ### Getting your application access token
 
 Check lib/get_access_token.rb
 
 ```ruby
-response = RestClient.post 'https://sandbox.boletosimples.com.br/api/v1/oauth2/token', {
-grant_type: 'client_credentials',
-client_id: Rails.application.secrets.app_id,
-client_secret:  Rails.application.secrets.app_secret
-}
+require 'boletosimples'
 
-app_access_token=JSON.parse(response)["access_token"]
+BoletoSimples.configure do |c|
+  c.environment = :sandbox
+  c.application_id = 'app_id'
+  c.application_secret = 'app_secret'
+end
+
+puts BoletoSimples.configuration.client_credentials
 ```
