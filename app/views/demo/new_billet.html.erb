@@ -1,6 +1,16 @@
 <h1>API - novo boleto</h1>
 
-<p><%= @billet.inspect %></p>
+<p>
+  <% if @bank_billet.persisted? %>
+    "Sucesso :)"
+    <br/>
+    <%= @bank_billet.attributes %>
+  <% else %>
+    puts "Erro :("
+    <br/>
+    <%= @bank_billet.response_errors %>
+  <% end %>
+</p>
 
 <p><%= link_to 'Voltar', demo_api_path %></p>
 

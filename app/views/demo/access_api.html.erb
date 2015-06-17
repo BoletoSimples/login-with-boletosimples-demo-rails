@@ -1,11 +1,22 @@
 <h1>API</h1>
 
-<% if @user['errors'].present? %>
-  <p><%= @user.to_json %></p>
-<% else %>
-  <p><%= @user.to_json %></p>
-  <p><%= link_to "Acessar Boleto Simples", "#{Rails.application.secrets.url_base}/#{@user['login_url'].split('/')[3]}", target: "_blank" %></p>
-  <p><a href="/demo/new_billet?application_access_token=<%= @user['application_access_token'] %>">Criar boleto</a></p>
-<% end %>
+<p>
+  <% if @user.persisted? %>
+    "Sucesso :)"
+    <br/>
+    <%= @user.attributes %>
+    <p>
+      <%= link_to "Acessar Boleto Simples", @user.login_url, target: "_blank" %>
+    </p>
 
-<p><%= link_to 'Voltar', demo_api_path %></p>
+    <p>
+      <a href="/demo/new_billet?application_access_token=<%= @user.application_access_token %>">Criar boleto</a>
+    </p>
+  <% else %>
+    puts "Erro :("
+    <br/>
+    <%= @user.response_errors %>
+  <% end %>
+  </p>
+
+  <p><%= link_to 'Voltar', demo_api_path %></p>
