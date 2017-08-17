@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   def self.find_or_create_with_omniauth(auth)
     user = where(uid: auth.uid).first_or_create! do |user|

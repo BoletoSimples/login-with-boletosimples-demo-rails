@@ -1,5 +1,5 @@
 class DemoController < ApplicationController
-  before_filter :authenticate!, only: [:logged_in]
+  before_action :authenticate!, only: [:logged_in]
 
   def index
   end
