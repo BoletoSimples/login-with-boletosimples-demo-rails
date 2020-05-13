@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'boletosimples'
 
 BoletoSimples.configure do |c|
@@ -7,4 +9,3 @@ BoletoSimples.configure do |c|
 end
 
 puts BoletoSimples.configuration.client_credentials
-

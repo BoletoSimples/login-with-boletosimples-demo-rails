@@ -1,14 +1,19 @@
-source 'https://rubygems.org'
-ruby '2.6.3'
+# frozen_string_literal: true
 
-gem 'rails', '5.2.3'
+source 'https://rubygems.org'
+
+ruby '2.6.6'
+
+gem 'boletosimples'
+gem 'omniauth-boletosimples'
 gem 'puma'
+gem 'rails', '6.0.3'
 gem 'sqlite3'
-gem 'omniauth-boletosimples', '0.1.0'
-gem 'boletosimples', '0.6.0'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
   gem 'listen'
-  gem 'spring'
-  gem 'spring-watcher-listen'
+  gem 'rubocop'
 end

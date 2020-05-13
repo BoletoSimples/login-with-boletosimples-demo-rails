@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'demo/index'
   get 'demo/api'
@@ -5,7 +7,7 @@ Rails.application.routes.draw do
   get 'demo/new_billet'
   get 'demo/logged_in'
 
-  get "/auth/boletosimples/callback", to: "sessions#create"
+  get '/auth/boletosimples/callback', to: 'sessions#create'
 
   resource :session do
     collection do
