@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 BoletoSimples.configure do |c|
   c.environment = :sandbox
   c.application_id = Rails.application.secrets.app_id

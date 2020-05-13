@@ -2,7 +2,7 @@
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :boletosimples, Rails.application.secrets.app_id, Rails.application.secrets.app_secret,
-           environment: 'sandbox', scope: 'login, email, profile, phone, address, banking, business, write, read, balance, checkout, subscription', user_agent: 'Your App (yourapp@example.com)'
+           environment: 'sandbox', scope: 'login email profile phone address banking business write read balance checkout subscription', user_agent: 'Your App (yourapp@example.com)'
 
   on_failure { |env| SessionsController.action(:failure).call(env) }
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def create
     user = User.find_or_create_with_omniauth(auth_hash)
@@ -6,7 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    @omniauth_error = env['omniauth.error']
+    @omniauth_error = request.env['omniauth.error']
   end
 
   def show
