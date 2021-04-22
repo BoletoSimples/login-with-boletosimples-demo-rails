@@ -7,7 +7,7 @@ ruby '2.6.6'
 gem 'boletosimples'
 gem 'omniauth-boletosimples'
 gem 'puma'
-gem 'rails', '6.0.3'
+gem 'rails', '6.1.3.1'
 gem 'sqlite3'
 
 # Reduces boot times through caching; required in config/boot.rb
